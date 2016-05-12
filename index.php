@@ -1,5 +1,13 @@
 <?php
-	include "lightboxheader.inc";	
-	include "lightbox.inc";
-	include "footer.inc";
+
+	$isEditor = false;
+	if($isEditor){
+		include "moderatorheader.inc";
+		include "moderator.inc";
+		include "footer.inc";
+	}else{
+		include "guestheader.inc";		
+		include "guest.inc";
+		include "footer.inc";
+	}
 ?>

@@ -9,10 +9,10 @@ function changeVisibility(divID){
   }//if
 }//changeVisibility
 
-function unHideTwo(divID1, divID2, newSrc, access, photographer, description){
+function unHideTwo(divID1, divID2, newSrc, photographer, description){
 	if(newSrc != null || access != null || photographer != null || description != null){
 		
-		document.getElementById("imageFile").setAttribute("src", "uploadedimages/"+access+"/"+newSrc);
+		document.getElementById("imageFile").setAttribute("src", "uploadedimages/"+newSrc);
 		document.getElementById("imageFile").setAttribute("width", "900px");
 		document.getElementById("imageFile").setAttribute("height", "600px");
 		document.getElementById("infosection").innerHTML = "<pre>Photographer: " + photographer+"     " + "Description: " + description+"</pre>";

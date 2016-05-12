@@ -3,17 +3,11 @@
 	<button class = "greenAcross" type = "button" onclick = "goto('import.php');">Upload</button>
 	</div>
 	<div id = "filterwrapper">
-		<h3>Filter</h3>
+		<h3>Search</h3>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 			<input type="search" id="search" name = "search" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />
-		    <input type="radio" value="public" name="access" 
-		    <?php if (isset($_POST["access"]) && $_POST["access"]=="public") echo "checked";
-		    if(!isset($_POST["access"])) echo "checked";?>>
-		    <label>Public</label>
-		    <input type="radio" value="private" name="access" 
-		    <?php if (isset($_POST["access"]) && $_POST["access"]=="private") echo "checked";?>>
-		    <label>All Images</label>
-		    <button id = "filterButton" type="submit">Filter</button>
+		    
+		    
 		</form>
 	</div>
 	<div id="main">
@@ -78,6 +72,7 @@
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current, true);	
 				
+				//show all public images
 				foreach ($contents as $content){
 					if($content["access"] == "public"){
 						echo '
@@ -88,18 +83,6 @@
 					}
 				}
 				
-				if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["access"] == "private"){
-					
-					foreach ($contents as $content){
-						if($content["access"] == "private"){
-							echo '
-							<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
-							<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-							</a>
-							';
-						}
-					}
-				}
 			}
         ?>
       

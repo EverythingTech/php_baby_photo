@@ -1,19 +1,13 @@
-<h1>Gallery</h1>
+<h1>Photo Management System</h1>
 	<div id = buttonwrapper>
 	<button class = "greenAcross" type = "button" onclick = "goto('import.php');">Upload</button>
 	</div>
 	<div id = "filterwrapper">
-		<h3>Filter</h3>
+		<h3>Search</h3>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 			<input type="search" id="search" name = "search" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />
-		    <input type="radio" value="public" name="access" 
-		    <?php if (isset($_POST["access"]) && $_POST["access"]=="public") echo "checked";
-		    if(!isset($_POST["access"])) echo "checked";?>>
-		    <label>Public</label>
-		    <input type="radio" value="private" name="access" 
-		    <?php if (isset($_POST["access"]) && $_POST["access"]=="private") echo "checked";?>>
-		    <label>All Images</label>
-		    <button id = "filterButton" type="submit">Filter</button>
+		    
+		    
 		</form>
 	</div>
 	<div id="main">
@@ -36,26 +30,26 @@
 				$contents = json_decode($current, true);
 				$found = false;
 				foreach ($contents as $content) {
-					if($content["access"] == "public"){
-						$sourceArray = explode(',', $content["tags"]);
-						$dir = "uploadedimages/";
-						foreach($sourceArray as $eachSource){
-							
-							foreach ($searchArray as $eachSearch) {
+					
+					$sourceArray = explode(',', $content["tags"]);
+					$dir = "uploadedimages/";
+					foreach($sourceArray as $eachSource){
+						
+						foreach ($searchArray as $eachSearch) {
 
-								if($eachSearch == $eachSource){
-									echo '
-									<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
-									<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-									</a>
-									';
-									$found = true;
-									break;
-								}
-								if($found) break;
+							if($eachSearch == $eachSource){
+								echo '
+								<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
+								<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
+								</a>
+								';
+								$found = true;
+								break;
 							}
+							if($found) break;
 						}
 					}
+					
 				}
 
 	        }else{
@@ -77,18 +71,19 @@
 				}		
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current, true);	
-				
-				foreach ($contents as $content){
-					if($content["access"] == "public"){
-						echo '
-						<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
-						<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-						</a>
-						';
-					}
+				//show all photos
+				foreach ($contents as $content){		
+					echo '
+					<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
+					<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
+					</a>
+					';
+					
 				}
 				
-				if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["access"] == "private"){
+				//show private photos
+				/*
+				if($_SERVER["REQUEST_METHOD"] == "POST"){
 					
 					foreach ($contents as $content){
 						if($content["access"] == "private"){
@@ -99,7 +94,7 @@
 							';
 						}
 					}
-				}
+				}*/
 			}
         ?>
       

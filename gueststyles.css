@@ -19,7 +19,8 @@ body {
   margin-right: auto;
   margin-left: auto;
   width: 900px;
-  height: 700px;
+  min-height: 50px;
+  padding-bottom: 10px;
   border-radius: 8px;
   background: #f4f7f8;
 }

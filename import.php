@@ -62,8 +62,8 @@
 			$fileUploadErr = "You have to choose a file to continue";
 			$errorInForm = true;
 		}else{
-			if($access == "public") $target_dir = "uploadedimages/public/";
-			if($access == "private") $target_dir = "uploadedimages/private/";
+			
+			$target_dir = "uploadedimages/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -92,15 +92,14 @@
 		if($errorInForm){
 			include("form.inc");
 			
-		}else if ($_SERVER["REQUEST_METHOD"] == "POST"){
-			
+		}else if ($_SERVER["REQUEST_METHOD"] == "POST"){			
 
 			//put image into folder
 			if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)){
 
 				$successMsg = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-				if($access == "public") $currentCounterPath = "uploadedimages/public/imageCount.txt";
-					else $currentCounterPath = "uploadedimages/private/imageCount.txt";
+				$currentCounterPath = "uploadedimages/imageCount.txt";
+					
 				$currentCounter = file_get_contents($currentCounterPath);
 				$counterNum = (int)$currentCounter + 1;
 				
@@ -163,9 +162,9 @@
 				$thumb = imagecreatetruecolor($thumbSize, $thumbSize);
 				imagecopyresampled($thumb, $myImage, 0, 0, $c1['x'], $c1['y'], $thumbSize, $thumbSize, $cropWidth, $cropHeight);
 				if($imgExt == "jpg" || $imgExt == "JPG" || $imgExt == "jpeg")
-					imagejpeg($thumb, $target_dir.'/thumb/'.($counterNum-1).'.'.$imgExt);
+					imagejpeg($thumb, $target_dir.'thumb/'.($counterNum-1).'.'.$imgExt);
 				else if ($imgExt == "png" || $imgExt == "PNG")
-					imagepng($thumb, $target_dir.'/thumb/'.($counterNum-1).'.'.$imgExt);
+					imagepng($thumb, $target_dir.'thumb/'.($counterNum-1).'.'.$imgExt);
 				imagedestroy($thumb);
 
 				
