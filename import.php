@@ -121,7 +121,8 @@
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current);	
 				$newArr = array("filename" => ($counterNum-1).'.'.$imgExt);
-				$_POST["filename"]= $newArr["filename"];		
+				$_POST["filename"]= $newArr["filename"];
+				$_POST["tags"] = preg_replace('/\s+/', '', $_POST["tags"]);
 				array_push($contents, $_POST);
 				
 				$fileObj = fopen($jsonfile, "w");
