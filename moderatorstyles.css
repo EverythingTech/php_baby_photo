@@ -8,22 +8,38 @@ body {
 .unhidden {
   display: block;
 }
-.tile {
-  margin-left: 21px;
-  margin-top: 5px;
-  width: 150px;
-  height: 150px;
-}
+
 #main {
+
   position: relative;
   margin-right: auto;
   margin-left: auto;
   padding-top:20px;
+  padding-bottom: 20px;
   width: 900px;
   min-height: 50px;
   padding-bottom: 10px;
   border-radius: 8px;
   background: #f4f7f8;
+  overflow: hidden;
+}
+.tile {
+  display:block;
+  margin:auto;
+
+  width: 150px;
+  height: 150px;
+}
+.tilewrapper{
+  padding-top: 5px;
+  margin-left: 21px;
+  margin-top: 5px;
+  width: 160px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.8);
+  float:left;
+  border-radius: 5px;
+
 }
 h1 {
   text-align: center;

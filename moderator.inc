@@ -73,27 +73,15 @@
 				//show all photos
 				foreach ($contents as $content){		
 					echo '
+					<div class = "tilewrapper">
 					<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
 					<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
 					</a>
+					</div>
 					';
 					
 				}
-				
-				//show private photos
-				/*
-				if($_SERVER["REQUEST_METHOD"] == "POST"){
-					
-					foreach ($contents as $content){
-						if($content["access"] == "private"){
-							echo '
-							<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
-							<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-							</a>
-							';
-						}
-					}
-				}*/
+
 			}
 			
 			
