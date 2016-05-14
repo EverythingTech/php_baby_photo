@@ -12,11 +12,8 @@
 	  <div id="mainwrapper">
 
         <?php 
-		
-			
-
-			echo '<a href="downloadzip.php">Download</a>';
-        	//echo var_dump($_POST);
+			echo '<a id = "download-all-button" href="downloadzip.php">Download All Images</a>';
+        	
 	        if(isset($_POST["search"]) && $_POST["search"]!= "" && $_SERVER["REQUEST_METHOD"] == "POST"){
 	        	$searchString = $_POST["search"];
 	        	$searchArray = explode(',', $searchString);
