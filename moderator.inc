@@ -38,9 +38,11 @@
 
 							if($eachSearch == $eachSource){
 								echo '
+								<div class = "tilewrapper">
 								<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
 								<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
 								</a>
+								</div>
 								';
 								$found = true;
 								break;
@@ -77,6 +79,8 @@
 					<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
 					<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
 					</a>
+					<input type = "button" class = "individual-delete-buttons" value = "Delete" onclick = \'deleteThis("'.$content["filename"].'")\'/>
+
 					</div>
 					';
 					

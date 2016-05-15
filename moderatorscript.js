@@ -1,4 +1,3 @@
-var access = "public";
 //switch visibility of ID
 function changeVisibility(divID){
   var element = document.getElementById(divID);
@@ -10,7 +9,7 @@ function changeVisibility(divID){
 }//changeVisibility
 
 function unHideTwo(divID1, divID2, newSrc, photographer, description){
-	if(newSrc != null || access != null || photographer != null || description != null){
+	if(newSrc != null || photographer != null || description != null){
 		
 		document.getElementById("imageFile").setAttribute("src", "uploadedimages/"+newSrc);
 		document.getElementById("imageFile").setAttribute("width", "900px");
@@ -26,9 +25,16 @@ function goto (url){
 	window.location = url;
 }
 
-function privateEnable(){
-	if (access == "public") access = "private";
-	else access = "public";
+function deleteThis(fileName){
+    var r = confirm("Are you sure you want to delete this Image?");
+    if(r == true){
+    	//deletes the file from /uploadedimages
+        $.ajax({
+          url: 'delete.php',
+          data: {'filedir' : "<?php echo dirname(__FILE__) . 'uploadedimages/'?>" + fileName, 'file': fileName},
+        });
 
-
+        
+     
+    }
 }

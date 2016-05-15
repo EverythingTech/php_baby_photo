@@ -7,5 +7,7 @@
         <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="moderatorstyles.css">
         <script type="text/javascript" src="moderatorscript.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script src="http://code.jquery.com/jquery.min.js"></script>
   </head>
     <body>
