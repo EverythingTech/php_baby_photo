@@ -29,6 +29,8 @@ function deleteThis(fileName){
     var r = confirm("Are you sure you want to delete this Image?");
     if(r == true){
     	//deletes the file from /uploadedimages
+    	//deletes json entry
+    	//deletes thumb file
         $.ajax({
           url: 'delete.php',
           data: {'filedir' : "<?php echo dirname(__FILE__) . 'uploadedimages/'?>" + fileName, 'file': fileName},

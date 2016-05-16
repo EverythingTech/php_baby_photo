@@ -42,6 +42,12 @@
 								<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
 								<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
 								</a>
+								<form action="delete.php" method="post">
+									<input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
+									<button class = "individual-delete-button" type="submit">Delete</button>
+								</form>
+								<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
+
 								</div>
 								';
 								$found = true;
@@ -79,7 +85,10 @@
 					<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
 					<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
 					</a>
-					<input type = "button" class = "individual-delete-buttons" value = "Delete" onclick = \'deleteThis("'.$content["filename"].'")\'/>
+					<form action="delete.php" method="post">
+						<input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
+						<button class = "individual-delete-button" type="submit">Delete</button>
+					</form>
 					<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
 
 					</div>
