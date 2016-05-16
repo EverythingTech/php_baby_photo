@@ -32,9 +32,6 @@ function deleteThis(fileName){
         $.ajax({
           url: 'delete.php',
           data: {'filedir' : "<?php echo dirname(__FILE__) . 'uploadedimages/'?>" + fileName, 'file': fileName},
-        });
-
-        
-     
+        }); 
     }
 }
