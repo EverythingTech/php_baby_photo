@@ -28,6 +28,9 @@
 				}		
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current, true);
+				$name = array();
+				$description = array();
+				$filename = array();
 				$found = false;
 				foreach ($contents as $content) {
 					if($content["access"] == "public"){
@@ -38,6 +41,9 @@
 							foreach ($searchArray as $eachSearch) {
 
 								if($eachSearch == $eachSource){
+									array_push($name , $content['last_name']);
+									array_push($description, $content['description']);
+									array_push($filename, 'uploadedimages/'.$content['filename']);	
 									echo '
 									<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
 									<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
@@ -51,9 +57,17 @@
 						}
 					}
 				}
+				//send each arrays into js
+				echo'<script>';
+				echo'var name ='.json_encode($name).';';
+				echo'var description ='.json_encode($description).';';
+				echo'var filename ='.json_encode($filename).';';
+				echo'</script>';
 
 	        }else{
-
+	        	$name = array();
+				$description = array();
+				$filename = array();
 		        $dir = "uploadedimages/";
 
 				# read galleryinfo.json
@@ -75,6 +89,9 @@
 				//show all public images
 				foreach ($contents as $content){
 					if($content["access"] == "public"){
+						array_push($name , $content['last_name']);
+						array_push($description, $content['description']);
+						array_push($filename, 'uploadedimages/'.$content['filename']);	
 						echo '
 						<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
 						<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
@@ -82,6 +99,12 @@
 						';
 					}
 				}
+				//send each arrays into js
+				echo'<script>';
+				echo'var name ='.json_encode($name).';';
+				echo'var description ='.json_encode($description).';';
+				echo'var filename ='.json_encode($filename).';';
+				echo'</script>';
 				
 			}
         ?>
@@ -100,6 +123,8 @@
 		<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
 		  <img id = "x" src = "close.png" alt = "close" >
 		</a>
+		<a href = "javascript: goBack()">Back</a>
+		<a href = "javascript: goNext()">Next</a>
 		<img id = "imageFile">
 		<div id = "infosection"></div>
 

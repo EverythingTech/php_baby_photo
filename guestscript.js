@@ -21,6 +21,30 @@ function unHideTwo(divID1, divID2, newSrc, photographer, description){
   	changeVisibility(divID2);
 }//unHideTwo
 
-function goto (url){
-	window.location = url;
+function goNext(){
+	currentShowing = document.getElementById("imageFile").getAttribute("src");
+
+	for(var i = 0; i < filename.length; i++){
+		if(filename[i] == currentShowing){
+			if((i+1) >= filename.length){
+				document.getElementById("imageFile").setAttribute("src", filename[0]);
+			}
+			else{document.getElementById("imageFile").setAttribute("src", filename[i+1]);}
+			
+		}
+	}
+}
+function goBack(){
+	currentShowing = document.getElementById("imageFile").getAttribute("src");
+	for(var i = 0; i < filename.length; i++){
+		if(filename[i] == currentShowing){
+			if((i-1) < 0){
+				document.getElementById("imageFile").setAttribute("src", filename[filename.length-1]);				
+			}else{
+				document.getElementById("imageFile").setAttribute("src", filename[i-1]);
+				document.getElementById("infosection").innerHTML = "<pre>Photographer: " + name[i-1]+"     " + "Description: " + description[i-1]+"</pre>";
+			}
+
+		}
+	}
 }
