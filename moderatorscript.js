@@ -11,8 +11,7 @@ function changeVisibility(divID){
 
 function unHideTwo(divID1, divID2, newSrc, photographer, description){
 
-	if(newSrc != null || photographer != null || description != null){
-		
+	if(newSrc != null || photographer != null || description != null){	
 		document.getElementById("imageFile").setAttribute("src", "uploadedimages/"+newSrc);
 		document.getElementById("imageFile").setAttribute("width", "900px");
 		document.getElementById("imageFile").setAttribute("height", "600px");
