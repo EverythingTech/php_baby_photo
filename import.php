@@ -1,7 +1,5 @@
 <?php
 	$errorInForm = false;
-	
-
 	include("formheader.inc");
 	$first_name = $last_name = $access = $desciption = $tags = $user_agreement = "";
 	$firstNameErr = $lastNameErr = $accessErr = $user_agreementError = $fileUploadErr = $successMsg= "";
@@ -30,6 +28,7 @@
 	}else{
 		$viewAlbum = false;
 	}
+
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		//validation
@@ -82,8 +81,9 @@
 			    $fileUploadErr = "Sorry, your file is larger than 2MB";
 			    $errorInForm = true;
 			}
+			
 			// Allow certain file formats
-			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "JPG" && $imageFileType != "PNG") {
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "JPG" && $imageFileType != "PNG"){
 			    $fileUploadErr = "Sorry, only JPG, JPEG, PNG files are allowed.";
 			    $errorInForm = true;
 			}
