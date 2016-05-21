@@ -120,8 +120,9 @@
 				}		
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current);	
-				$newArr = array("filename" => ($counterNum-1).'.'.$imgExt);
+				$newArr = array("filename" => (($counterNum-1).'.'.$imgExt), "isApproved" => false);
 				$_POST["filename"]= $newArr["filename"];
+				$_POST["isApproved"] = $newArr["isApproved"];
 				$_POST["tags"] = preg_replace('/\s+/', '', $_POST["tags"]);
 				array_push($contents, $_POST);
 				
