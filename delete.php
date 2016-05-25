@@ -1,4 +1,5 @@
 <?php
+
 	$filename = $_POST["fileToDelete"];
 	unlink('uploadedimages/'.$filename);
 	unlink('uploadedimages/thumb/'.$filename);
@@ -21,5 +22,6 @@
 	fwrite($fileObj, json_encode($contents));
 	fclose($fileObj);
 
-	header("Location: index.php"); /* Redirect browser */
+	//header("Location: index.php"); /* Redirect browser */
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

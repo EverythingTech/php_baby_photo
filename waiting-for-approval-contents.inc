@@ -41,6 +41,10 @@
             			<input type = "hidden" name = "fileToApprove" value = "'.$content["filename"].'">
             			<button class = "individual-approve-button" type="submit">Approve</button>
             		</form>
+                    <form action="delete.php" method="post">
+                        <input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
+                        <button class = "individual-delete-button" type="submit">Deny</button>
+                    </form>
             		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
 
             		</div>

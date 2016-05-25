@@ -120,7 +120,10 @@
 				}		
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current);	
-				$newArr = array("filename" => (($counterNum-1).'.'.$imgExt), "isApproved" => false);
+				$date = getdate();
+				$time = $date["0"];
+				$newArr = array("filename" => (($counterNum-1).'.'.$imgExt), "isApproved" => false, "time" => $time);
+				$_POST["time"] = $newArr["time"];
 				$_POST["filename"]= $newArr["filename"];
 				$_POST["isApproved"] = $newArr["isApproved"];
 				$_POST["tags"] = preg_replace('/\s+/', '', $_POST["tags"]);
