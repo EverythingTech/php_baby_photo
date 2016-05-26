@@ -4,10 +4,19 @@
 	<button class = "greenAcross" type = "button" onclick = "goto('waiting-for-approval.php');">Waiting For Approval</button>
 	</div>
 	<div id = "filterwrapper">
-		<h3>Search</h3>
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+		<h3>Tools</h3>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 			<input type="search" id="search" name = "search" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />    
 		</form>
+		Sort By:
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+			<select>
+				<option value = "sortfirstname">First Name</option>
+				<option value = "sortlastname">Last Name</option>
+				<option value = "sortdate">Date Uploaded</option>
+			</select>
+		</form>
+
 	</div>
 	<div id="main">
 	  <div id="mainwrapper">
@@ -53,7 +62,6 @@
 	        						<button class = "individual-delete-button" type="submit">Delete</button>
 	        					</form>
 	        					<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
-
 	        					</div>
 	        					';
 	        					$found = true;
@@ -113,6 +121,13 @@
 	        		</form>
 	        		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
 
+	        		<form method = "post">
+	        			<input type = "text" name = "firstname" value = "'.$content["first_name"].'">
+	        			<input type = "text" name = "lastname" value = "'.$content["last_name"].'">
+	        			<input type = "text" name = "description" value = "'.$content["description"].'">
+	        			<input type = "text" name = "tags" value = "'.$content["tags"].'">
+	        		</form>
+	        		<p id = "timep"> Time: '.$content['time'].'</p>
 	        		</div>
 	        		';
 	        	}
