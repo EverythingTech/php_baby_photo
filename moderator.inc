@@ -12,12 +12,11 @@
 		</form>
 		<h5>Sort By:</h5>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-			<select id = "sort" name = "sorted">
-				<option value = "sortfirstname">First Name</option>
-				<option value = "sortlastname">Last Name</option>
-				<option value = "sortdate">Date Uploaded</option>
+			<select id = "sort" name = "sorted" onchange="this.form.submit()">
+				<option value = "sortfirstname" <?php if(isset($_POST['sorted'])){ if($_POST['sorted'] == 'sortfirstname') echo 'selected="selected"';} ?>>First Name</option>
+				<option value = "sortlastname" <?php if(isset($_POST['sorted'])){ if( $_POST['sorted'] == 'sortlastname') echo 'selected="selected"';}?>>Last Name</option>
+				<option value = "sortdate" <?php if(isset($_POST['sorted'])){ if($_POST['sorted'] == 'sortdate') echo 'selected="selected"';} else echo 'selected = "selected"';?>>Date Uploaded</option>
 			</select>
-			<input type="submit">
 		</form>
 		</div>
 
@@ -40,6 +39,29 @@
         	$current = file_get_contents($jsonfile);
         	$contents = json_decode($current, true);
         	$found = false;
+        	//sorting for search
+        	//turns all letters in the array to lower case
+			//code
+			// Obtain a list of columns
+			if(isset($_POST['sorted'])){				
+				if($_POST['sorted'] == "sortdate"){
+					foreach ($contents as $key => $row) {
+						$sortedDate[$key] = $row['time'];
+					}
+					array_multisort($sortedDate, SORT_ASC, $contents);
+				}else if($_POST['sorted'] == "sortfirstname"){
+					
+					foreach ($contents as $key => $row) {
+						$sortedFirstName[$key] = $row['first_name'];
+					}
+					array_multisort($sortedFirstName, SORT_ASC, $contents);
+				}else if($_POST['sorted'] == "sortlastname"){
+					foreach ($contents as $key => $row) {
+						$sortedLastName[$key] = $row['last_name'];
+					}
+					array_multisort($sortedLastName, SORT_ASC, $contents);
+				}
+			}
         	$lastname = array();
         	$description = array();
         	$filename = array();
@@ -118,8 +140,7 @@
         	//turns all letters in the array to lower case
 			//code
 			// Obtain a list of columns
-			if(isset($_POST['sorted'])){
-				
+			if(isset($_POST['sorted'])){				
 				if($_POST['sorted'] == "sortdate"){
 					foreach ($contents as $key => $row) {
 						$sortedDate[$key] = $row['time'];

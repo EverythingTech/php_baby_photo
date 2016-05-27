@@ -33,26 +33,28 @@
 				$filename = array();
 				$found = false;
 				foreach ($contents as $content) {
-					if($content["access"] == "public"){
-						$sourceArray = explode(',', $content["tags"]);
-						$dir = "uploadedimages/";
-						foreach($sourceArray as $eachSource){
-							
-							foreach ($searchArray as $eachSearch) {
+					if($content["isApproved"]){
+						if($content["access"] == "public"){
+							$sourceArray = explode(',', $content["tags"]);
+							$dir = "uploadedimages/";
+							foreach($sourceArray as $eachSource){
+								
+								foreach ($searchArray as $eachSearch) {
 
-								if($eachSearch == $eachSource){
-									array_push($lastname , $content['last_name']);
-									array_push($description, $content['description']);
-									array_push($filename, 'uploadedimages/'.$content['filename']);	
-									echo '
-									<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
-									<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-									</a>
-									';
-									$found = true;
-									break;
+									if($eachSearch == $eachSource){
+										array_push($lastname , $content['last_name']);
+										array_push($description, $content['description']);
+										array_push($filename, 'uploadedimages/'.$content['filename']);	
+										echo '
+										<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\',\''.$content["last_name"].'\', \''.$content["description"].'\')">
+										<img class = "tile" src = "'.$dir.'thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
+										</a>
+										';
+										$found = true;
+										break;
+									}
+									if($found) break;
 								}
-								if($found) break;
 							}
 						}
 					}
@@ -88,15 +90,17 @@
 				
 				//show all public images
 				foreach ($contents as $content){
-					if($content["access"] == "public"){
-						array_push($lastname , $content['last_name']);
-						array_push($description, $content['description']);
-						array_push($filename, 'uploadedimages/'.$content['filename']);	
-						echo '
-						<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
-						<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-						</a>
-						';
+					if($content["isApproved"]){
+						if($content["access"] == "public"){
+							array_push($lastname , $content['last_name']);
+							array_push($description, $content['description']);
+							array_push($filename, 'uploadedimages/'.$content['filename']);	
+							echo '
+							<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
+							<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
+							</a>
+							';
+						}
 					}
 				}
 				//send each arrays into js
