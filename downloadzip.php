@@ -1,14 +1,12 @@
 <?php
-
-
 $dir = "uploadedimages/";
 $jsonfile = "galleryinfo.json";
 $current = file_get_contents($jsonfile);
 $contents = json_decode($current, true);
 $files_to_zip = array();
 foreach($contents as $content){
-	
-	array_push($files_to_zip, "uploadedimages/".$content["filename"]);
+	if($content["isApproved"])
+		array_push($files_to_zip, "uploadedimages/".$content["filename"]);
 }
 
 
