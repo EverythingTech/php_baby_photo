@@ -6,15 +6,11 @@
 
 	$jsonfile = "galleryinfo.json";	
 	$current = file_get_contents($jsonfile);
-	$contents = json_decode($current, true);	
-	
-	foreach ($contents as $index => $content) {
-		
+	$contents = json_decode($current, true);		
+	foreach ($contents as $index => $content) {		
 		if($content['filename'] == $filename){			
-			unset($contents[$index]);
-			
-		}
-		
+			unset($contents[$index]);			
+		}		
 	}
 	
 	

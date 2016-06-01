@@ -3,12 +3,21 @@
 	<button class = "greenAcross" type = "button" onclick = "goto('import.php');">Upload</button>
 	</div>
 	<div id = "filterwrapper">
-		<h3>Search</h3>
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
-			<input type="search" id="search" name = "search" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />
-		    
-		    
+		<h3>Tools</h3>
+		<div id = "toolswrapper">
+		<h5>Keyword Search: </h5>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+			<input type="search" id="search" name = "search" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />    
 		</form>
+		<h5>Sort By:</h5>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+			<select id = "sort" name = "sorted" onchange="this.form.submit()">
+				<option value = "sortfirstname" <?php if(isset($_POST['sorted'])){ if($_POST['sorted'] == 'sortfirstname') echo 'selected="selected"';} ?>>First Name</option>
+				<option value = "sortlastname" <?php if(isset($_POST['sorted'])){ if( $_POST['sorted'] == 'sortlastname') echo 'selected="selected"';}?>>Last Name</option>
+				<option value = "sortdate" <?php if(isset($_POST['sorted'])){ if($_POST['sorted'] == 'sortdate') echo 'selected="selected"';} else echo 'selected = "selected"';?>>Date Uploaded</option>
+			</select>
+		</form>
+		</div>
 	</div>
 	<div id="main">
 	  <div id="mainwrapper">
@@ -32,6 +41,13 @@
 				$description = array();
 				$filename = array();
 				$found = false;
+				if(isset($_POST['sorted'])){	
+					if($_POST['sorted'] == "sortfirstname"){
+						uasort($contents, 'sort_by_first');
+					}else if($_POST['sorted'] == "sortlastname"){					
+						uasort($contents, 'sort_by_last');
+					}
+				}
 				foreach ($contents as $content) {
 					if($content["isApproved"]){
 						if($content["access"] == "public"){
@@ -87,7 +103,13 @@
 				}		
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current, true);	
-				
+				if(isset($_POST['sorted'])){	
+					if($_POST['sorted'] == "sortfirstname"){
+						uasort($contents, 'sort_by_first');
+					}else if($_POST['sorted'] == "sortlastname"){					
+						uasort($contents, 'sort_by_last');
+					}
+				}
 				//show all public images
 				foreach ($contents as $content){
 					if($content["isApproved"]){
@@ -120,19 +142,24 @@
 	
 	</div>
 	
-	<div id = "centerBigImages">
-	  <div id = "bigImage" class = "hidden">
-
-
-		<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
-		  <img id = "x" src = "close.png" alt = "close" >
-		</a>
-		<a href = "javascript: goBack()">Back</a>
-		<a href = "javascript: goNext()">Next</a>
-		<img id = "imageFile">
-		<div id = "infosection"></div>
-
-	  </div>
-
+	
+	<div id = "bigImage" class = "hidden">
+	<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
+	  <img id = "x" src = "close.png" alt = "close" >
+	</a>
+	<div id = 'imagewrapper'>
+	<img id = "imageFile">
+	</div>
+	<div id = 'lb_navi'>
+	<a href = "javascript: goBack()">
+		<img id = "left" src = "left_arrow.png" alt = "Back" >
+	</a>
+	<a href = "javascript: goNext()">
+		<img id = "right" src = "right_arrow.png" alt = "Forward" >
+	</a>
+	</div>
+	<div id = "infosection"></div>
       
 	</div>
+
+      

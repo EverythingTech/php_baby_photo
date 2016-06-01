@@ -43,23 +43,11 @@
         	//turns all letters in the array to lower case
 			//code
 			// Obtain a list of columns
-			if(isset($_POST['sorted'])){				
-				if($_POST['sorted'] == "sortdate"){
-					foreach ($contents as $key => $row) {
-						$sortedDate[$key] = $row['time'];
-					}
-					array_multisort($sortedDate, SORT_ASC, $contents);
-				}else if($_POST['sorted'] == "sortfirstname"){
-					
-					foreach ($contents as $key => $row) {
-						$sortedFirstName[$key] = $row['first_name'];
-					}
-					array_multisort($sortedFirstName, SORT_ASC, $contents);
-				}else if($_POST['sorted'] == "sortlastname"){
-					foreach ($contents as $key => $row) {
-						$sortedLastName[$key] = $row['last_name'];
-					}
-					array_multisort($sortedLastName, SORT_ASC, $contents);
+			if(isset($_POST['sorted'])){	
+				if($_POST['sorted'] == "sortfirstname"){
+					uasort($contents, 'sort_by_first');
+				}else if($_POST['sorted'] == "sortlastname"){					
+					uasort($contents, 'sort_by_last');
 				}
 			}
         	$lastname = array();
@@ -138,25 +126,14 @@
 
         	//sorting
         	//turns all letters in the array to lower case
-			//code
+			
 			// Obtain a list of columns
-			if(isset($_POST['sorted'])){				
-				if($_POST['sorted'] == "sortdate"){
-					foreach ($contents as $key => $row) {
-						$sortedDate[$key] = $row['time'];
-					}
-					array_multisort($sortedDate, SORT_ASC, $contents);
-				}else if($_POST['sorted'] == "sortfirstname"){
-					
-					foreach ($contents as $key => $row) {
-						$sortedFirstName[$key] = $row['first_name'];
-					}
-					array_multisort($sortedFirstName, SORT_ASC, $contents);
-				}else if($_POST['sorted'] == "sortlastname"){
-					foreach ($contents as $key => $row) {
-						$sortedLastName[$key] = $row['last_name'];
-					}
-					array_multisort($sortedLastName, SORT_ASC, $contents);
+			if(isset($_POST['sorted'])){	
+
+				if($_POST['sorted'] == "sortfirstname"){
+					uasort($contents, 'sort_by_first');
+				}else if($_POST['sorted'] == "sortlastname"){					
+					uasort($contents, 'sort_by_last');
 				}
 			}
 
@@ -211,19 +188,22 @@
 	
 	</div>
 	
-	<div id = "centerBigImages">
-	  <div id = "bigImage" class = "hidden">
-		<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
-		  <img id = "x" src = "close.png" alt = "close" >
-		</a>
-		<a href = "javascript: goBack()">Back</a>
-		<a href = "javascript: goNext()">Next</a>
-
-
-		<img id = "imageFile">
-		<div id = "infosection"></div>
-
-	  </div>
-
+	
+  	<div id = "bigImage" class = "hidden">
+	<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
+	  <img id = "x" src = "close.png" alt = "close" >
+	</a>
+	<div id = 'imagewrapper'>
+	<img id = "imageFile">
+	</div>
+	<div id = 'lb_navi'>
+	<a href = "javascript: goBack()">
+		<img id = "left" src = "left_arrow.png" alt = "Back" >
+	</a>
+	<a href = "javascript: goNext()">
+		<img id = "right" src = "right_arrow.png" alt = "Forward" >
+	</a>
+	</div>
+	<div id = "infosection"></div>
       
 	</div>
