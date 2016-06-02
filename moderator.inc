@@ -23,7 +23,7 @@
 	</div>
 	<div id="main">
 	  <div id="mainwrapper">
-	  <form action = 'del.php' method = "post">
+	  <form action = 'delete-selected.php' method = "post" id = "delete-selected-form">
 	  	<input id = "delete-selected-button" type = 'submit' value = "Delete Selected">
 	  </form>
 	  <a id = "download-all-button" href="downloadzip.php">Download All Images</a>

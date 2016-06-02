@@ -1,4 +1,5 @@
 var filesToDelete = new Array();
+var deleteFormIndex = 0;
 function init(){
 }
 //switch visibility of ID
@@ -89,16 +90,21 @@ function goBack(){
 	}
 }
 function addToDelete(src){
+	var formContents = document.getElementById('delete-selected-form').innerHTML;
+
 	if(document.getElementById(src).style.opacity == '0.4'){
-		for(var i = 0; i < filesToDelete.length; i++){
-			if(filesToDelete[i] == src){
-				filesToDelete.splice(i, 1);
-			}
-		}
+		var id = "remove"+src;
+		var child = document.getElementById(id);
+		child.parentNode.removeChild(child);
+		
+		deleteFormIndex--;
 		document.getElementById(src).style.opacity = '1';
 	}
 	else{
-		filesToDelete.push(src);
+		var newLine = "<input type = 'hidden' name ='" + deleteFormIndex +"' value = " + src + " id ='remove"+src+"'>";
+		deleteFormIndex ++;
+		formContents += newLine;
+		document.getElementById('delete-selected-form').innerHTML = formContents;
 		document.getElementById(src).style.opacity = '0.4';
 	}
 }

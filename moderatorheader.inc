@@ -10,4 +10,4 @@
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
         <script src="http://code.jquery.com/jquery.min.js"></script>
   </head>
-    <body onload = "init()">
+    <body>
