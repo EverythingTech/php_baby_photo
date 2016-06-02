@@ -119,7 +119,7 @@
 					fclose($fileObj);
 				}		
 				$current = file_get_contents($jsonfile);
-				$contents = json_decode($current);	
+				$contents = json_decode($current, true);	
 				$date = getdate();
 				$time = $date["0"];
 				$newArr = array("filename" => (($counterNum-1).'.'.$imgExt), "isApproved" => false, "time" => $time);

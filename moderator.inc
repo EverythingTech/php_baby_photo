@@ -23,6 +23,9 @@
 	</div>
 	<div id="main">
 	  <div id="mainwrapper">
+	  <form action = 'del.php' method = "post">
+	  	<input id = "delete-selected-button" type = 'submit' value = "Delete Selected">
+	  </form>
 	  <a id = "download-all-button" href="downloadzip.php">Download All Images</a>
 	  <?php   	
         if(isset($_POST["search"]) && $_POST["search"]!= "" && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -68,7 +71,7 @@
 	        					array_push($filename, 'uploadedimages/'.$content['filename']);	
 	        					echo '
 	        					<div class = "tilewrapper">
-					        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
+					        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\')">
 					        		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
 					        		</a>
 					        		<form action="delete.php" method="post">
@@ -150,13 +153,15 @@
 	        		array_push($filename, 'uploadedimages/'.$content['filename']);	
 	        		echo '
 	        		<div class = "tilewrapper">
-	        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
-	        		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
+	        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\')">
+	        		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'" id = "'.$content["filename"].'">
 	        		</a>
 	        		<form action="delete.php" method="post">
 	        			<input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
 	        			<button class = "individual-delete-button" type="submit">Delete</button>
+	        			<input type="checkbox" name="deleteCheck" onchange = "addToDelete(\''.$content['filename'].'\')">
 	        		</form>
+
 	        		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
 
 	        		<form method = "post" action = "changejson.php">
@@ -190,7 +195,7 @@
 	
 	
   	<div id = "bigImage" class = "hidden">
-	<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
+	<a href = "javascript: unHideTwo('lightbox', 'bigImage', null)">
 	  <img id = "x" src = "close.png" alt = "close" >
 	</a>
 	<div id = 'imagewrapper'>
@@ -204,6 +209,11 @@
 		<img id = "right" src = "right_arrow.png" alt = "Forward" >
 	</a>
 	</div>
-	<div id = "infosection"></div>
+	<div id = "infosection">
+		<div id = 'basic_info'></div>
+		<div id = 'lb_tools'>
+			<a id = 'lb_download_url'>Download</a>
+		</div>
+	</div>
       
 	</div>

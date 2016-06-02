@@ -63,22 +63,28 @@
 	</div>
 	
 	<div id = "lightbox" class = "hidden">
-	
+        
+    </div>
+        
+        
+    <div id = "bigImage" class = "hidden">
+    <a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
+      <img id = "x" src = "close.png" alt = "close" >
+    </a>
+    <div id = 'imagewrapper'>
+    <img id = "imageFile">
+    </div>
+    <div id = 'lb_navi'>
+    <a href = "javascript: goBack()">
+        <img id = "left" src = "left_arrow.png" alt = "Back" >
+    </a>
+    <a href = "javascript: goNext()">
+        <img id = "right" src = "right_arrow.png" alt = "Forward" >
+    </a>
+    </div>
+    <div id = "infosection"></div>
+
 	</div>
-	
-	<div id = "centerBigImages">
-	  <div id = "bigImage" class = "hidden">
-		<a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
-		  <img id = "x" src = "close.png" alt = "close" >
-		</a>
-		<a href = "javascript: goBack()">Back</a>
-		<a href = "javascript: goNext()">Next</a>
-
-
-		<img id = "imageFile">
-		<div id = "infosection"></div>
-
-	  </div>
 
       
 	</div>

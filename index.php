@@ -1,6 +1,5 @@
 <?php
-
-	$isEditor = false;
+	$isEditor = true;
 	if($isEditor){
 		include "moderatorheader.inc";
 		include "moderator.inc";
