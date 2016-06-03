@@ -24,7 +24,7 @@
 	<div id="main">
 	  <div id="mainwrapper">
 	  <form action = 'delete-selected.php' method = "post" id = "delete-selected-form">
-	  	<input id = "delete-selected-button" type = 'submit' value = "Delete Selected">
+	  	<input id = "delete-selected-button" type = 'submit' value = "Delete Selected" disabled>
 	  </form>
 	  <a id = "download-all-button" href="downloadzip.php">Download All Images</a>
 	  <?php   	
@@ -53,6 +53,8 @@
 					uasort($contents, 'sort_by_last');
 				}
 			}
+			$firstname = array();
+			$tags = array();
         	$lastname = array();
         	$description = array();
         	$filename = array();
@@ -65,7 +67,8 @@
 	        			foreach ($searchArray as $eachSearch) {
 
 	        				if($eachSearch == $eachSource){
-
+	        					array_push($firstname , $content['first_name']);
+								array_push($tags , $content['tags']);
 	        					array_push($lastname , $content['last_name']);
 	        					array_push($description, $content['description']);
 	        					array_push($filename, 'uploadedimages/'.$content['filename']);	
@@ -102,6 +105,8 @@
         	}
         	//send each arrays into js
         	echo'<script>';
+        	echo'var firstname ='.json_encode($firstname).';';
+			echo'var tags ='.json_encode($tags).';';
         	echo'var lastname ='.json_encode($lastname).';';
         	echo'var description ='.json_encode($description).';';
         	echo'var filename ='.json_encode($filename).';';
@@ -141,13 +146,16 @@
 			}
 
 
-
+			$firstname = array();
+			$tags = array();
         	$lastname = array();
         	$description = array();
         	$filename = array();
         	//show all photos
         	foreach ($contents as $content){	
         		if($content["isApproved"]){
+        			array_push($firstname , $content['first_name']);
+					array_push($tags , $content['tags']);
 	        		array_push($lastname , $content['last_name']);
 	        		array_push($description, $content['description']);
 	        		array_push($filename, 'uploadedimages/'.$content['filename']);	
@@ -180,6 +188,8 @@
 
         	//send each arrays into js
         	echo'<script>';
+        	echo'var firstname ='.json_encode($firstname).';';
+			echo'var tags ='.json_encode($tags).';';
         	echo'var lastname ='.json_encode($lastname).';';
         	echo'var description ='.json_encode($description).';';
         	echo'var filename ='.json_encode($filename).';';
@@ -213,6 +223,14 @@
 		<div id = 'basic_info'></div>
 		<div id = 'lb_tools'>
 			<a id = 'lb_download_url'>Download</a>
+			<form method = "post" action = "changejson.php">
+				<input type = "hidden" name = "filename" id="lbfilename" value = "">
+				<input type = "text" name = "firstname" id="lbfirstname" value = "">
+				<input type = "text" name = "lastname" id="lblastname" value = "">
+				<input type = "text" name = "description" id="lbdescription" value = "">
+				<input type = "text" name = "tags" id="lbtags" value = "">
+				<input type = "submit" value = "Save">
+			</form>
 		</div>
 	</div>
       

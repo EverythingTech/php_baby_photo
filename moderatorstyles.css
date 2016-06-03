@@ -231,3 +231,7 @@ h3 {
     margin-top: 1px;
     font-size: .6em;
 }
+
+#delete-selected-button{
+    opacity: 0.3;
+}
