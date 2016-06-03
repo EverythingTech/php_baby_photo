@@ -26,7 +26,7 @@ function unHideTwo(divID1, divID2, newSrc){
 				document.getElementById("lb_download_url").setAttribute("href", filename[i]);	
 				document.getElementById("lb_download_url").setAttribute("download", newSrc);	
 				document.getElementById("imageFile").setAttribute("src", filename[i]);		
-				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + lastname[i]+"     " + "Description: " + description[i] +"</pre>";
+				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + firstname[i] + " " + lastname[i]+"     " + "Description: " + description[i] +"</pre>";
 				
 			}
 		}
@@ -68,7 +68,7 @@ function goNext(){
 				document.getElementById("lb_download_url").setAttribute("href", filename[0]);
 				document.getElementById("lb_download_url").setAttribute("download", ((filename[0]).split('/'))[1]);		
 				document.getElementById("imageFile").setAttribute("src", filename[0]);
-				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + lastname[0]+"     " + "Description: " + description[0]+"</pre>";
+				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + firstname[0] + " " + lastname[0]+"     " + "Description: " + description[0]+"</pre>";
 			}
 			else{
 				document.getElementById("lbfilename").setAttribute("value", ((filename[i+1]).split('/'))[1]);
@@ -79,7 +79,7 @@ function goNext(){
 				document.getElementById("lb_download_url").setAttribute("href", filename[i+1]);
 				document.getElementById("lb_download_url").setAttribute("download", ((filename[i+1]).split('/'))[1]);	
 				document.getElementById("imageFile").setAttribute("src", filename[i+1]);
-				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + lastname[i+1]+"     " + "Description: " + description[i+1]+"</pre>";
+				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + firstname[i+1] + " " + lastname[i+1]+"     " + "Description: " + description[i+1]+"</pre>";
 			}
 			
 		}
@@ -99,7 +99,7 @@ function goBack(){
 				document.getElementById("lb_download_url").setAttribute("href", filename[filename.length-1]);
 				document.getElementById("lb_download_url").setAttribute("download", (filename[filename.length-1]).split('/')[1]);
 				document.getElementById("imageFile").setAttribute("src", filename[filename.length-1]);	
-				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + lastname[filename.length-1]+"     " + "Description: " + description[filename.length-1]+"</pre>";			
+				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + firstname[filename.length-1] + " " + lastname[filename.length-1]+"     " + "Description: " + description[filename.length-1]+"</pre>";			
 			}else{
 				document.getElementById("lbfilename").setAttribute("value", ((filename[i-1]).split('/'))[1]);
 				document.getElementById("lbfirstname").setAttribute("value", firstname[i-1]);
@@ -109,7 +109,7 @@ function goBack(){
 				document.getElementById("lb_download_url").setAttribute("href", filename[i-1]);
 				document.getElementById("lb_download_url").setAttribute("download", filename[i-1].split('/')[1]);
 				document.getElementById("imageFile").setAttribute("src", filename[i-1]);
-				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + lastname[i-1]+"     " + "Description: " + description[i-1]+"</pre>";
+				document.getElementById("basic_info").innerHTML = "<pre id = 'info'>Photographer: " + firstname[i-1] + " " + lastname[i-1]+"     " + "Description: " + description[i-1]+"</pre>";
 			}
 
 		}
