@@ -8,10 +8,10 @@
 		<div id = "toolswrapper">
 		<h5>Keyword Search: </h5>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-			<input type="search" id="search" name = "search" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />    
-		</form>
+			<input type="search" id="search" name = "search" value = "<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo $_POST["search"];?>" placeholder=<?php if(isset($_POST['search']) && $_POST["search"]!= "") echo '"'.$_POST["search"].'"'; else echo "'Keywords Search...'";?> />    
+		
 		<h5>Sort By:</h5>
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+		
 			<select id = "sort" name = "sorted" onchange="this.form.submit()">
 				<option value = "sortfirstname" <?php if(isset($_POST['sorted'])){ if($_POST['sorted'] == 'sortfirstname') echo 'selected="selected"';} ?>>First Name</option>
 				<option value = "sortlastname" <?php if(isset($_POST['sorted'])){ if( $_POST['sorted'] == 'sortlastname') echo 'selected="selected"';}?>>Last Name</option>
@@ -85,13 +85,13 @@
 
 					        		<form method = "post" action = "changejson.php">
 					        			<input type = "hidden" name = "filename" value = "'.$content["filename"].'">
-					        			<input type = "text" name = "firstname" value = "'.$content["first_name"].'">
-					        			<input type = "text" name = "lastname" value = "'.$content["last_name"].'">
-					        			<input type = "text" name = "description" value = "'.$content["description"].'">
-					        			<input type = "text" name = "tags" value = "'.$content["tags"].'">
+					        			<input type = "text" name = "firstname" value = "'.htmlspecialchars($content["first_name"]).'">
+					        			<input type = "text" name = "lastname" value = "'.htmlspecialchars($content["last_name"]).'">
+					        			<input type = "text" name = "description" value = "'.htmlspecialchars($content["description"]).'">
+					        			<input type = "text" name = "tags" value = "'.htmlspecialchars($content["tags"]).'">
 					        			<input type = "submit" value = "Save">
 					        		</form>
-					        		<p id = "timep"> Time: '.$content['time'].'</p>
+					        		<p class = "timep"> Time: '.$content['time'].'</p>
 	        						</div>
 	        					';
 	        					$found = true;
@@ -174,13 +174,13 @@
 
 	        		<form method = "post" action = "changejson.php">
 	        			<input type = "hidden" name = "filename" value = "'.$content["filename"].'">
-	        			<input type = "text" name = "firstname" value = "'.$content["first_name"].'">
-	        			<input type = "text" name = "lastname" value = "'.$content["last_name"].'">
-	        			<input type = "text" name = "description" value = "'.$content["description"].'">
-	        			<input type = "text" name = "tags" value = "'.$content["tags"].'">
+	        			<input type = "text" name = "firstname" value = "'.htmlspecialchars($content["first_name"]).'">
+	        			<input type = "text" name = "lastname" value = "'.htmlspecialchars($content["last_name"]).'">
+	        			<input type = "text" name = "description" value = "'.htmlspecialchars($content["description"]).'">
+	        			<input type = "text" name = "tags" value = "'.htmlspecialchars($content["tags"]).'">
 	        			<input type = "submit" value = "Save">
 	        		</form>
-	        		<p id = "timep"> Time: '.$content['time'].'</p>
+	        		<p class = "timep"> Time: '.$content['time'].'</p>
 	        		</div>
 	        		';
 	        	}
@@ -204,12 +204,12 @@
 	</div>
 	
 	
-  	<div id = "bigImage" class = "hidden">
+  	<div id = "bigImage"  class = "hidden">
 	<a href = "javascript: unHideTwo('lightbox', 'bigImage', null)">
 	  <img id = "x" src = "close.png" alt = "close" >
 	</a>
 	<div id = 'imagewrapper'>
-	<img id = "imageFile">
+	<img id = "imageFile" src = "http://example.org/" alt = "img">
 	</div>
 	<div id = 'lb_navi'>
 	<a href = "javascript: goBack()">

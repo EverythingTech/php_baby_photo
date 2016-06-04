@@ -60,7 +60,7 @@
         	echo'</script>';   
       ?>
 	  </div>      
-	</div>
+	
 	
 	<div id = "lightbox" class = "hidden">
         
@@ -72,7 +72,7 @@
       <img id = "x" src = "close.png" alt = "close" >
     </a>
     <div id = 'imagewrapper'>
-    <img id = "imageFile">
+    <img id = "imageFile" src = "http://example.org/" alt = "img">
     </div>
     <div id = 'lb_navi'>
     <a href = "javascript: goBack()">

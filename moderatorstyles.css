@@ -227,7 +227,7 @@ h3 {
     box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 
-#timep{
+.timep{
     margin-top: 1px;
     font-size: .6em;
 }

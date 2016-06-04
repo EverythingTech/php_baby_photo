@@ -127,6 +127,21 @@
 				$_POST["filename"]= $newArr["filename"];
 				$_POST["isApproved"] = $newArr["isApproved"];
 				$_POST["tags"] = preg_replace('/\s+/', '', $_POST["tags"]);
+				
+				//sanitize
+				$_POST["first_name"] = strip_tags($_POST["first_name"]);
+				$_POST["last_name"] = strip_tags($_POST["last_name"]);
+				$_POST["desciption"] = strip_tags($_POST["desciption"]);
+				$_POST["tags"] = strip_tags($_POST["tags"]);
+				$_POST["first_name"] = trim($_POST["first_name"]);
+				$_POST["last_name"] = trim($_POST["last_name"]);
+				$_POST["desciption"] = trim($_POST["desciption"]);
+				$_POST["tags"] = trim($_POST["tags"]);
+				$_POST["first_name"] = stripslashes($_POST["first_name"]);
+				$_POST["last_name"] = stripslashes($_POST["last_name"]);
+				$_POST["desciption"] = stripslashes($_POST["desciption"]);
+				$_POST["tags"] = stripslashes($_POST["tags"]);
+
 				array_push($contents, $_POST);
 				
 				$fileObj = fopen($jsonfile, "w");

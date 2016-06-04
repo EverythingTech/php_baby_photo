@@ -5,6 +5,22 @@
 	$description = $_POST["description"];
 	$tags = $_POST["tags"];
 
+	//sanitize
+	$tags = preg_replace('/\s+/', '', $tags);
+	$firstname = strip_tags($firstname);
+	$lastname = strip_tags($lastname);
+	$description = strip_tags($description);
+	$tags = strip_tags($tags);
+	$firstname = trim($firstname);
+	$lastname = trim($lastname);
+	$description = trim($description);
+	$tags = trim($tags);
+	$firstname = stripslashes($firstname);
+	$lastname = stripslashes($lastname);
+	$description =  stripslashes($description);
+	$tags = stripslashes($tags);
+
+
 	$jsonfile = "galleryinfo.json";	
 	$current = file_get_contents($jsonfile);
 	$contents = json_decode($current, true);	
