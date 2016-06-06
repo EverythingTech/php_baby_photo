@@ -90,6 +90,14 @@ h1 {
     height: 25px;
     z-index: 2;
 }
+#download-button {
+    position: fixed;
+    top: 10px;
+    right: 40px;
+    width: 25px;
+    height: 25px;
+    z-index: 2;
+}
 
 #infosection {
     position: fixed;
@@ -102,6 +110,18 @@ h1 {
     color: white;
     padding-left: 5px;
     padding-top: 0;
+}
+
+#basic_info{
+    position: absolute;
+    width:50%;
+    word-wrap: break-word;
+}
+
+#lb_tools{
+    position: absolute;
+    width:48%;
+    left: 52%;
 }
 
 #lb_navi{
@@ -117,7 +137,8 @@ h1 {
     width: 25px;
     height: 25px;
 }
-#info{
+.info{
+    font-size: 0.8em;
     margin-top: 0px;
     margin-bottom: 0px;
 }

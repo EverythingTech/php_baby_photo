@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$errorInForm = false;
 	include("formheader.inc");
 	$first_name = $last_name = $access = $desciption = $tags = $user_agreement = "";
@@ -131,15 +132,15 @@
 				//sanitize
 				$_POST["first_name"] = strip_tags($_POST["first_name"]);
 				$_POST["last_name"] = strip_tags($_POST["last_name"]);
-				$_POST["desciption"] = strip_tags($_POST["desciption"]);
+				$_POST["description"] = strip_tags($_POST["description"]);
 				$_POST["tags"] = strip_tags($_POST["tags"]);
 				$_POST["first_name"] = trim($_POST["first_name"]);
 				$_POST["last_name"] = trim($_POST["last_name"]);
-				$_POST["desciption"] = trim($_POST["desciption"]);
+				$_POST["description"] = trim($_POST["description"]);
 				$_POST["tags"] = trim($_POST["tags"]);
 				$_POST["first_name"] = stripslashes($_POST["first_name"]);
 				$_POST["last_name"] = stripslashes($_POST["last_name"]);
-				$_POST["desciption"] = stripslashes($_POST["desciption"]);
+				$_POST["description"] = stripslashes($_POST["description"]);
 				$_POST["tags"] = stripslashes($_POST["tags"]);
 
 				array_push($contents, $_POST);

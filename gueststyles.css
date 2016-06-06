@@ -82,6 +82,7 @@ h1 {
     color: white;
     padding-left: 5px;
     padding-top: 0;
+    word-wrap: break-word;
 }
 
 #lb_navi{
@@ -97,7 +98,8 @@ h1 {
     width: 25px;
     height: 25px;
 }
-#info{
+.info{
+    font-size: 0.8em;
     margin-top: 0px;
     margin-bottom: 0px;
 }

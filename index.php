@@ -1,6 +1,7 @@
 <?php
-	$isEditor = true;
-	if($isEditor){
+	session_start();
+	$_SESSION['isEditor'] = false;
+	if($_SESSION['isEditor']){
 		include "moderatorheader.inc";
 		include "moderator.inc";
 		include "footer.inc";

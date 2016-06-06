@@ -205,8 +205,11 @@
 	
 	
   	<div id = "bigImage"  class = "hidden">
+  	<a id = 'lb_download_url'>
+  		<img id = "download-button" src = "download.png" alt = "download" >
+  	</a>
 	<a href = "javascript: unHideTwo('lightbox', 'bigImage', null)">
-	  <img id = "x" src = "close.png" alt = "close" >
+		<img id = "x" src = "close.png" alt = "close" >
 	</a>
 	<div id = 'imagewrapper'>
 	<img id = "imageFile" src = "http://example.org/" alt = "img">
@@ -222,7 +225,7 @@
 	<div id = "infosection">
 		<div id = 'basic_info'></div>
 		<div id = 'lb_tools'>
-			<a id = 'lb_download_url'>Download</a>
+			
 			<form method = "post" action = "changejson.php">
 				<input type = "hidden" name = "filename" id="lbfilename" value = "">
 				<input type = "text" name = "firstname" id="lbfirstname" value = "">
