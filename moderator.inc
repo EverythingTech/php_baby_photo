@@ -73,27 +73,39 @@
 	        					array_push($description, $content['description']);
 	        					array_push($filename, 'uploadedimages/'.$content['filename']);	
 	        					echo '
-	        					<div class = "tilewrapper">
-					        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\')">
-					        		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
-					        		</a>
-					        		<form action="delete.php" method="post">
-					        			<input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
-					        			<button class = "individual-delete-button" type="submit">Delete</button>
-					        		</form>
-					        		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
+				        		<div class = "tilewrapper">
+				        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\')">
+				        		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'" id = "'.$content["filename"].'">
+				        		</a>
+				        		
+				        		<form action="delete.php" method="post" class = "deleteform">
+				        			<input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
+				        			<button class = "individual-delete-button" type="submit" >Delete</button>
+				        			<input class = "individual-delete-checkbox" type="checkbox" name="deleteCheck" onchange = "addToDelete(\''.$content['filename'].'\')">
+				        		</form>
 
-					        		<form method = "post" action = "changejson.php">
-					        			<input type = "hidden" name = "filename" value = "'.$content["filename"].'">
-					        			<input type = "text" name = "firstname" value = "'.htmlspecialchars($content["first_name"]).'">
-					        			<input type = "text" name = "lastname" value = "'.htmlspecialchars($content["last_name"]).'">
-					        			<input type = "text" name = "description" value = "'.htmlspecialchars($content["description"]).'">
-					        			<input type = "text" name = "tags" value = "'.htmlspecialchars($content["tags"]).'">
-					        			<input type = "submit" value = "Save">
-					        		</form>
-					        		<p class = "timep"> Time: '.$content['time'].'</p>
-	        						</div>
-	        					';
+				        		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'" class = "individual-download-button">Download</a>
+				        		<div class = "individual-textbox-wrapper">
+				        		<div class = "individual-textbox-header">
+				        		<ul class = "individual-textbox-header-ul">
+				        		<li>First Name</li>
+				        		<li>Last Name</li>
+				        		<li>Description</li>
+				        		<li>Tags</li>
+				        		</ul>
+				        		</div>
+				        		<form method = "post" action = "changejson.php" class = "individual-textbox-form">
+				        			<input type = "hidden" name = "filename" value = "'.$content["filename"].'">
+				        			<input class = "individual-textbox" type = "text" name = "firstname" value = "'.htmlspecialchars($content["first_name"]).'">
+				        			<input class = "individual-textbox" type = "text" name = "lastname" value = "'.htmlspecialchars($content["last_name"]).'">
+				        			<input class = "individual-textbox" type = "text" name = "description" value = "'.htmlspecialchars($content["description"]).'">
+				        			<input class = "individual-textbox" type = "text" name = "tags" value = "'.htmlspecialchars($content["tags"]).'">
+				        			<input type = "submit" value = "Save">
+				        		</form>
+				        		</div>
+				        		<p class = "timep"> Time: '.$content['time'].'</p>
+				        		</div>
+				        		';
 	        					$found = true;
 	        					break;
 	        					
@@ -164,22 +176,32 @@
 	        		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\')">
 	        		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'" id = "'.$content["filename"].'">
 	        		</a>
-	        		<form action="delete.php" method="post">
+	        		
+	        		<form action="delete.php" method="post" class = "deleteform">
 	        			<input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
-	        			<button class = "individual-delete-button" type="submit">Delete</button>
-	        			<input type="checkbox" name="deleteCheck" onchange = "addToDelete(\''.$content['filename'].'\')">
+	        			<button class = "individual-delete-button" type="submit" >Delete</button>
+	        			<input class = "individual-delete-checkbox" type="checkbox" name="deleteCheck" onchange = "addToDelete(\''.$content['filename'].'\')">
 	        		</form>
 
-	        		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
-
-	        		<form method = "post" action = "changejson.php">
+	        		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'" class = "individual-download-button">Download</a>
+	        		<div class = "individual-textbox-wrapper">
+	        		<div class = "individual-textbox-header">
+	        		<ul class = "individual-textbox-header-ul">
+	        		<li>First Name</li>
+	        		<li>Last Name</li>
+	        		<li>Description</li>
+	        		<li>Tags</li>
+	        		</ul>
+	        		</div>
+	        		<form method = "post" action = "changejson.php" class = "individual-textbox-form">
 	        			<input type = "hidden" name = "filename" value = "'.$content["filename"].'">
-	        			<input type = "text" name = "firstname" value = "'.htmlspecialchars($content["first_name"]).'">
-	        			<input type = "text" name = "lastname" value = "'.htmlspecialchars($content["last_name"]).'">
-	        			<input type = "text" name = "description" value = "'.htmlspecialchars($content["description"]).'">
-	        			<input type = "text" name = "tags" value = "'.htmlspecialchars($content["tags"]).'">
+	        			<input class = "individual-textbox" type = "text" name = "firstname" value = "'.htmlspecialchars($content["first_name"]).'">
+	        			<input class = "individual-textbox" type = "text" name = "lastname" value = "'.htmlspecialchars($content["last_name"]).'">
+	        			<input class = "individual-textbox" type = "text" name = "description" value = "'.htmlspecialchars($content["description"]).'">
+	        			<input class = "individual-textbox" type = "text" name = "tags" value = "'.htmlspecialchars($content["tags"]).'">
 	        			<input type = "submit" value = "Save">
 	        		</form>
+	        		</div>
 	        		<p class = "timep"> Time: '.$content['time'].'</p>
 	        		</div>
 	        		';

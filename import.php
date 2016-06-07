@@ -204,21 +204,6 @@
 			include("form.inc");
 			
 		}
-	}else if($viewAlbum){
-		$file = "galleryinfo.json";
-		$current = file_get_contents($file);
-		$contents = json_decode($current);
-		echo "<pre>";
-		var_dump($contents);
-    	echo "</pre>";
-    	$dirname = "uploadedimages/";
-		$images = glob($dirname."*.*");
-		foreach($images as $image) {
-			echo '<img src="/'.$image.' " width = "400" height = "300" alt = "'.$image.'"><br/>'."\n";
-		}
-
-		
-
 	}else{
 		include("form.inc");		
 	}

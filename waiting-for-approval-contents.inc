@@ -37,13 +37,13 @@
             		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
             		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
             		</a>
-            		<form action="approve.php" method="post">
+            		<form action="approve.php" method="post" class = "individual-approve-form">
             			<input type = "hidden" name = "fileToApprove" value = "'.$content["filename"].'">
             			<button class = "individual-approve-button" type="submit">Approve</button>
             		</form>
-                    <form action="delete.php" method="post">
+                    <form action="delete.php" method="post" class = "individual-deny-form">
                         <input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
-                        <button class = "individual-delete-button" type="submit">Deny</button>
+                        <button class = "individual-deny-button" type="submit">Deny</button>
                     </form>
             		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
 

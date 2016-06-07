@@ -231,6 +231,7 @@ h3 {
     border-radius: 3px;
     padding: 2px;
     box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    opacity: 0.3;
 }
 
 #view-gallery-waiting-view{
@@ -253,6 +254,121 @@ h3 {
     font-size: .6em;
 }
 
-#delete-selected-button{
-    opacity: 0.3;
+.individual-delete-button{
+    background-color: #ff5050;
+    font-family: 'Nunito', sans-serif;
+    position: absolute;
+    font-size: 12px;
+    width: 70px;
+    text-align: left;
+    margin-top: 5px;
+    color: #FFF;
+    border: 1px solid #cc0000;
+    border-width: 1px 1px 3px;
+    border-radius: 3px;
+    padding: 2px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
 }
+
+.individual-delete-checkbox{
+    position: relative;
+    left: 45px;
+    top: 4px;
+}
+
+.individual-download-button{    
+    font-family: 'Nunito', sans-serif;
+    position: absolute;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left:3px;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    border-radius: 3px;
+    padding: 2px;   
+    text-decoration: none;
+    color: #FFF;
+    background-color: #4bc970;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+
+}
+.deleteform{
+    display: inline-block;
+    height: 30px;
+    margin-left: 4px;
+    width: 70px;
+}
+
+.individual-textbox-header{
+    position: relative;
+    width: 50px;
+    display: inline-block;
+    top: -23px;
+}
+.individual-textbox-header-ul{
+    list-style-type: none;
+    font-size: .2em;
+    width: 50px;
+    padding-left: 0;
+    
+}
+.individual-textbox-header-ul li{
+    margin-bottom: 9px;
+
+}
+.individual-textbox{
+    width: 84px;
+}
+.individual-textbox-form{
+    display: inline-block;
+    width: 80px;
+}
+.individual-textbox-wrapper{
+    margin-top: 10px;
+    margin-left: 3px;
+}
+
+
+.individual-approve-button{
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left:3px;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    border-radius: 3px;
+    padding: 2px;   
+    text-decoration: none;
+    color: #FFF;
+    background-color: #4bc970;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+.individual-deny-button{
+    background-color: #ff5050;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    margin-top: 5px;
+    color: #FFF;
+    border: 1px solid #cc0000;
+    border-width: 1px 1px 3px;
+    border-radius: 3px;
+    padding: 2px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+
+}
+.individual-deny-form{
+    width: 70px;
+    display: inline-block;
+}
+.individual-approve-form{
+    width: 70px;
+    display: inline-block;
+}
+
+

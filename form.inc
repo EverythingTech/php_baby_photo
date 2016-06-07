@@ -45,9 +45,6 @@
   <button class = "resetPost" type="submit">Submit</button>
   </fieldset>
   <fieldset>
-    <a href="import.php/?viewAlbum=true">View Album</a>
-  </fieldset>
-  <fieldset>
     <span class = "success"><?php echo $successMsg;?></span>
   </fieldset>
 
