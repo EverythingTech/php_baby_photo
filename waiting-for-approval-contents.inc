@@ -22,19 +22,23 @@
         	$current = file_get_contents($jsonfile);
         	$contents = json_decode($current, true);
 
-        	$name = array();
-        	$description = array();
-        	$filename = array();
+        	$firstname = array();
+            $tags = array();
+            $lastname = array();
+            $description = array();
+            $filename = array();
 
         	//show all photos
         	foreach ($contents as $content){	
                 if(!$content['isApproved']){
-            		array_push($name , $content['last_name']);
-            		array_push($description, $content['description']);
-            		array_push($filename, 'uploadedimages/'.$content['filename']);	
+            		array_push($firstname , $content['first_name']);
+                    array_push($tags , $content['tags']);
+                    array_push($lastname , $content['last_name']);
+                    array_push($description, $content['description']);
+                    array_push($filename, 'uploadedimages/'.$content['filename']);
             		echo '
             		<div class = "tilewrapper">
-            		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\', \''.$content["last_name"].'\', \''.$content["description"].'\')">
+            		<a href = "javascript: unHideTwo(\'lightbox\', \'bigImage\', \''.$content["filename"].'\')">
             		<img class = "tile" src = "'.$dir.'/thumb/'.$content["filename"].'" alt = "'.$content["filename"].'">
             		</a>
             		<form action="approve.php" method="post" class = "individual-approve-form">
@@ -45,31 +49,35 @@
                         <input type = "hidden" name = "fileToDelete" value = "'.$content["filename"].'">
                         <button class = "individual-deny-button" type="submit">Deny</button>
                     </form>
-            		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'">Download</a>
-
+            		<a href="'.$dir.$content["filename"].'" download="'.$content["filename"].'" class = "individual-download-wait">Download</a>
+                    <p class = "timep"> Uploaded: '.date("F j, Y, g:i a", $content['time']).'</p>
             		</div>
             		';
                 }
         	}
-
         	//send each arrays into js
         	echo'<script>';
-        	echo'var name ='.json_encode($name).';';
-        	echo'var description ='.json_encode($description).';';
-        	echo'var filename ='.json_encode($filename).';';
-        	echo'</script>';   
+            echo'var firstname ='.json_encode($firstname).';';
+            echo'var tags ='.json_encode($tags).';';
+            echo'var lastname ='.json_encode($lastname).';';
+            echo'var description ='.json_encode($description).';';
+            echo'var filename ='.json_encode($filename).';';
+            echo'</script>';
       ?>
 	  </div>      
 	
 	
 	<div id = "lightbox" class = "hidden">
-        
+    
     </div>
-        
-        
-    <div id = "bigImage" class = "hidden">
-    <a href = "javascript: unHideTwo('lightbox', 'bigImage', null, null, null, null)">
-      <img id = "x" src = "close.png" alt = "close" >
+    
+    
+    <div id = "bigImage"  class = "hidden">
+    <a id = 'lb_download_url'>
+        <img id = "download-button" src = "download.png" alt = "download" >
+    </a>
+    <a href = "javascript: unHideTwo('lightbox', 'bigImage', null)">
+        <img id = "x" src = "close.png" alt = "close" >
     </a>
     <div id = 'imagewrapper'>
     <img id = "imageFile" src = "http://example.org/" alt = "img">
@@ -82,9 +90,32 @@
         <img id = "right" src = "right_arrow.png" alt = "Forward" >
     </a>
     </div>
-    <div id = "infosection"></div>
-
-	</div>
+    <div id = "infosection">
+        <div id = 'basic_info'></div>
+        <div id = 'lb_tools'>
+            
+            <form method = "post" action = "changejson.php" id = "lb-textbox-form">
+                <input type = "hidden" name = "filename" id="lbfilename" value = "">
+                <ul id = "lb-textbox-header-ul-left">
+                    <li>First Name</li>
+                    <li>Last Name</li>
+                </ul>
+                <div id = "lb-textbox-left">
+                <input class = "lb-individual-textbox" type = "text" name = "firstname" id="lbfirstname" value = "">
+                <input class = "lb-individual-textbox" type = "text" name = "lastname" id="lblastname" value = "">
+                </div>
+                <ul id = "lb-textbox-header-ul-right">
+                    <li>Description</li>
+                    <li>Tags</li>
+                </ul>
+                <div id = "lb-textbox-right">
+                <input class = "lb-individual-textbox" type = "text" name = "description" id="lbdescription" value = "">
+                <input class = "lb-individual-textbox" type = "text" name = "tags" id="lbtags" value = "">
+                </div>
+                <input id = "lb-individual-submit" type = "submit" value = "Save">
+            </form>
+        </div>
+    </div>
 
       
 	</div>

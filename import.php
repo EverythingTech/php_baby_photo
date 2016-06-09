@@ -121,8 +121,7 @@
 				}		
 				$current = file_get_contents($jsonfile);
 				$contents = json_decode($current, true);	
-				$date = getdate();
-				$time = $date["0"];
+				$time = time();
 				$newArr = array("filename" => (($counterNum-1).'.'.$imgExt), "isApproved" => false, "time" => $time);
 				$_POST["time"] = $newArr["time"];
 				$_POST["filename"]= $newArr["filename"];

@@ -1,6 +1,12 @@
+
 <?php
 	session_start();
 	$_SESSION['isEditor'] = true;
+	date_default_timezone_set("America/Los_Angeles");
+	//if logged in
+	//show moderator view
+	//else
+	//show guest view
 	if($_SESSION['isEditor']){
 		include "moderatorheader.inc";
 		include "moderator.inc";

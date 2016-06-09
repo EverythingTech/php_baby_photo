@@ -103,7 +103,7 @@
 				        			<input type = "submit" value = "Save">
 				        		</form>
 				        		</div>
-				        		<p class = "timep"> Time: '.$content['time'].'</p>
+				        		<p class = "timep"> Uploaded: '.date("F j, Y, g:i a", $content['time']).'</p>
 				        		</div>
 				        		';
 	        					$found = true;
@@ -202,7 +202,7 @@
 	        			<input type = "submit" value = "Save">
 	        		</form>
 	        		</div>
-	        		<p class = "timep"> Time: '.$content['time'].'</p>
+	        		<p class = "timep"> Time: '.gmdate("F j, Y, g:i a", $content['time']).'</p>
 	        		</div>
 	        		';
 	        	}
@@ -248,13 +248,25 @@
 		<div id = 'basic_info'></div>
 		<div id = 'lb_tools'>
 			
-			<form method = "post" action = "changejson.php">
+			<form method = "post" action = "changejson.php" id = "lb-textbox-form">
 				<input type = "hidden" name = "filename" id="lbfilename" value = "">
-				<input type = "text" name = "firstname" id="lbfirstname" value = "">
-				<input type = "text" name = "lastname" id="lblastname" value = "">
-				<input type = "text" name = "description" id="lbdescription" value = "">
-				<input type = "text" name = "tags" id="lbtags" value = "">
-				<input type = "submit" value = "Save">
+				<ul id = "lb-textbox-header-ul-left">
+	        		<li>First Name</li>
+	        		<li>Last Name</li>
+	        	</ul>
+				<div id = "lb-textbox-left">
+				<input class = "lb-individual-textbox" type = "text" name = "firstname" id="lbfirstname" value = "">
+				<input class = "lb-individual-textbox" type = "text" name = "lastname" id="lblastname" value = "">
+				</div>
+				<ul id = "lb-textbox-header-ul-right">
+	        		<li>Description</li>
+	        		<li>Tags</li>
+	        	</ul>
+				<div id = "lb-textbox-right">
+				<input class = "lb-individual-textbox" type = "text" name = "description" id="lbdescription" value = "">
+				<input class = "lb-individual-textbox" type = "text" name = "tags" id="lbtags" value = "">
+				</div>
+				<input id = "lb-individual-submit" type = "submit" value = "Save">
 			</form>
 		</div>
 	</div>
