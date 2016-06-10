@@ -1,15 +1,18 @@
 <?php
 	session_start();
+	//checks if user is editor
 	if($_SESSION['isEditor']){
+		//opens json file
 		$dir = "uploadedimages/";
 		$jsonfile = "galleryinfo.json";
 		$current = file_get_contents($jsonfile);
 		$contents = json_decode($current, true);
 		$files_to_zip = array();
+		//creates a zip file 
 		foreach($contents as $content){
 			if($content["isApproved"])
 				array_push($files_to_zip, "uploadedimages/".$content["filename"]);
-		}
+		} // foreach
 
 
 		//if true, good; if false, zip creation failed
@@ -37,16 +40,13 @@
 				//make sure the file exists
 				if(file_exists($file)) {
 					$valid_files[] = $file;
-				}
-			}
-		}
+				} // if
+			} // foreach
+		} // if
 		//if we have good files...
 		if(count($valid_files)) {
 			//create the archive
 			$zip = new ZipArchive();
-			/*if($zip->open($destination,ZIPARCHIVE::OVERWRITE) !== true) {
-				return false;
-			}*/
 			if(file_exists("photos.zip")){
 				$res = $zip->open($destination,ZIPARCHIVE::OVERWRITE);
 			}else{$zip->open($destination,ZIPARCHIVE::CREATE);}
@@ -54,7 +54,7 @@
 			//add the files
 			foreach($valid_files as $file) {
 				$zip->addFile($file,$file);
-			}
+			} // foreach
 			//debug
 			//echo 'The zip archive contains ',$zip->numFiles,' files with a status of ',$zip->status;
 			
@@ -63,11 +63,9 @@
 			
 			//check to make sure the file exists
 			return file_exists($destination);
-		}
-		else
-		{
+		} else {
 			return false;
-		}
-	}
+		} // else
+	} // create_zip
 
 ?>
