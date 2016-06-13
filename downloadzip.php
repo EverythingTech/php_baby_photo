@@ -8,12 +8,11 @@
 		$current = file_get_contents($jsonfile);
 		$contents = json_decode($current, true);
 		$files_to_zip = array();
-		//creates a zip file 
+		//creates a zip file
 		foreach($contents as $content){
 			if($content["isApproved"])
 				array_push($files_to_zip, "uploadedimages/".$content["filename"]);
 		} // foreach
-
 
 		//if true, good; if false, zip creation failed
 		if(!create_zip($files_to_zip,'photos.zip')) echo "error";
@@ -28,7 +27,8 @@
 
 		header("Location: index.php"); /* Redirect browser */
 		exit();
-	}
+	}//if
+	
 	/* creates a compressed zip file */
 	function create_zip($files = array(),$destination = '') {
 		//vars
@@ -50,17 +50,17 @@
 			if(file_exists("photos.zip")){
 				$res = $zip->open($destination,ZIPARCHIVE::OVERWRITE);
 			}else{$zip->open($destination,ZIPARCHIVE::CREATE);}
-			
+
 			//add the files
 			foreach($valid_files as $file) {
 				$zip->addFile($file,$file);
 			} // foreach
 			//debug
 			//echo 'The zip archive contains ',$zip->numFiles,' files with a status of ',$zip->status;
-			
+
 			//close the zip -- done!
 			$zip->close();
-			
+
 			//check to make sure the file exists
 			return file_exists($destination);
 		} else {

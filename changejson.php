@@ -47,5 +47,5 @@
 
 		//goes back to index.php
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
-	}
+	}//if
 ?>			

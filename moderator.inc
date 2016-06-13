@@ -207,7 +207,7 @@
 								<input type = "submit" value = "Save">
 							</form>
 							</div>
-							<p class = "timep"> Time: '.gmdate("F j, Y, g:i a", $content['time']).'</p>
+							<p class = "timep"> Uploaded: '.date("F j, Y, g:i a", $content['time']).'</p>
 							</div>
 							';
 						} // if

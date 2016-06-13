@@ -1,7 +1,7 @@
-var filesToDelete = new Array();
+//index for delete form
 var deleteFormIndex = 0;
 
-function init() {}
+
 //switch visibility of ID
 function changeVisibility(divID) {
     var element = document.getElementById(divID);
@@ -12,6 +12,7 @@ function changeVisibility(divID) {
     } //if
 } //changeVisibility
 
+//show lightbox
 function unHideTwo(divID1, divID2, newSrc) {
     currentShowing = "uploadedimages/" + newSrc;
     if (newSrc != null || divID1 != null || divID2 != null) {
@@ -28,18 +29,20 @@ function unHideTwo(divID1, divID2, newSrc) {
                 document.getElementById("imageFile").setAttribute("src", filename[i]);
                 document.getElementById("basic_info").innerHTML = "<p class = 'info'>Photographer: " + firstname[i] + " " + lastname[i] + "</p><p class = 'info'>" + "Description: " + description[i] + "</p>";
 
-            }
-        }
-    }
+            }// if
+        }//for
+    }//if
 
     changeVisibility(divID1);
     changeVisibility(divID2);
 } //unHideTwo
 
+//take user to a webpage
 function goto(url) {
     window.location = url;
-}
+}//goto
 
+//go to next image in lightbox
 function goNext() {
     currentShowing = document.getElementById("imageFile").getAttribute("src");
 
@@ -66,12 +69,12 @@ function goNext() {
                 document.getElementById("lb_download_url").setAttribute("download", ((filename[i + 1]).split('/'))[1]);
                 document.getElementById("imageFile").setAttribute("src", filename[i + 1]);
                 document.getElementById("basic_info").innerHTML = "<p class='info'>Photographer: " + firstname[i + 1] + " " + lastname[i + 1] + "</p><p class='info'>" + "Description: " + description[i + 1] + "</p>";
-            }
+            } // if else
+        }//if
+    }//for
+}//goNext
 
-        }
-    }
-}
-
+// go to previous image in lightbox
 function goBack() {
     currentShowing = document.getElementById("imageFile").getAttribute("src");
     for (var i = 0; i < filename.length; i++) {
@@ -96,11 +99,13 @@ function goBack() {
                 document.getElementById("lb_download_url").setAttribute("download", filename[i - 1].split('/')[1]);
                 document.getElementById("imageFile").setAttribute("src", filename[i - 1]);
                 document.getElementById("basic_info").innerHTML = "<p class='info'>Photographer: " + firstname[i - 1] + " " + lastname[i - 1] + "</p><p class='info'>" + "Description: " + description[i - 1] + "</p>";
-            }
+            } // if else
 
-        }
-    }
+        }//if
+    } // for
 } //goBack
+
+//add filenames of files to delete to html form
 function addToDelete(src) {
     var formContents = document.getElementById('delete-selected-form').innerHTML;
     if (document.getElementById(src).style.opacity == '0.4') {
@@ -116,7 +121,7 @@ function addToDelete(src) {
         formContents += newLine;
         document.getElementById('delete-selected-form').innerHTML = formContents;
         document.getElementById(src).style.opacity = '0.4';
-    }
+    } // if else
 
     if (deleteFormIndex == 0) {
         document.getElementById("delete-selected-button").style.opacity = "0.3";
@@ -124,5 +129,5 @@ function addToDelete(src) {
     } else {
         document.getElementById("delete-selected-button").style.opacity = "1";
         document.getElementById("delete-selected-button").disabled = false;
-    }
-}
+    } // if else
+} // addToDelete

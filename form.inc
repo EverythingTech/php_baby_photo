@@ -29,7 +29,7 @@
   </fieldset>
   
   <fieldset>
-    <label>Discription of the photo</label>
+    <label>Description of the photo</label>
     <textarea id = "description" name="description"><?php if(isset($description))echo $description;?></textarea>
   
   

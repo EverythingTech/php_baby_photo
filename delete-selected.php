@@ -25,5 +25,5 @@
 		fclose($fileObj);
 		//redirects to index.php
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
-	}
+	}//if
 ?>
