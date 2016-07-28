@@ -17,7 +17,6 @@
 				unset($contents[$index]);			
 			} // if		
 		} // foreach
-		
 		// writes to json
 		$fileObj = fopen($jsonfile, "w");
 		fwrite($fileObj, json_encode($contents));
