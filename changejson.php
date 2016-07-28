@@ -10,6 +10,7 @@
 		$description = $_POST["description"];
 		$tags = $_POST["tags"];
 
+		
 		//sanitize the edits
 		$tags = preg_replace('/\s+/', '', $tags);
 		$firstname = strip_tags($firstname);
